@@ -16,9 +16,7 @@ function fibonacci_loop($num1=1,$num2=1) {
 }
 function fibonacci_recursive($num1=1,$num2=1) {
     $result = $num1+$num2;
-    if($result>34){
-        return;
-    }else{
+    if($result<=34){
         $num1 = $num2;
         $num2 = $result;
         echo $result."\n";
