@@ -50,9 +50,14 @@ class PersonCRUD
         return $outArr;
     }
 
-    public function savePerson()
+    public function savePerson($tablename,$column2, $value2,$column1,$value1)
     {
-
+        $sql = "UPDATE ".$tablename." SET ".$column1."='".$value1."' WHERE ".$column2." = '".$value2."';";
+        if ($this->conn->query($sql) === TRUE) {
+            echo "Data Updated successfully" . "\n";
+        } else {
+            echo "Error updating into database: " . $this->conn->error . "\n";
+        }
     }
 
     public function deletePerson($tablename,$column, $value)
