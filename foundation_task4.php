@@ -6,20 +6,20 @@ class ItemOwners
     {
         //TODO: Implement this
         $uniqueOwners = [];
-        foreach ($items as  $item => $owner) {
+        foreach ($items as $item => $owner) {
             if (!in_array($owner, $uniqueOwners)) {
-                array_push($uniqueOwners,$owner);
+                array_push($uniqueOwners, $owner);
             }
         }
-        $groupedByOwners =[];
+        $groupedByOwners = [];
         sort($uniqueOwners);
 
-        foreach ($uniqueOwners as $owner1){
+        foreach ($uniqueOwners as $owner1) {
             $temp = [];
-            foreach ($items as  $item => $owner2) {
-              if($owner1 == $owner2){
-                  array_push($temp,$item);
-              }
+            foreach ($items as $item => $owner2) {
+                if ($owner1 == $owner2) {
+                    array_push($temp, $item);
+                }
             }
             $groupedByOwners[$owner1] = $temp;
         }

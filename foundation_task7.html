@@ -2,15 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>foundation_task7</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div>
-    Ending Number: <input id="endNumber" type="number">
-    <button type="button" onclick="postRequest()">Get Fibonacci</button>
+<div class="jumbotron d-flex justify-content-center">
+    <h1>Foundation Task 7</h1>
 </div>
-<div id="output" style="padding: 20px"></div>
+
+<div id="output" class="justify-content-center" style="padding: 20px"></div>
+
+<hr>
+<div class="d-flex justify-content-center" >
+ <div class="row text-center">
+     Load person(s) with name: <input id="loadName" type="text">
+     <button type="button" id="btnGetAll">Get All</button>
+ </div>
+</div>
+<hr>
+<div class="d-flex justify-content-center" >
+    <div class="row text-center">
+        Delete person(s) with name: <input id="deleteName" type="text">
+        <button type="button" id="btnREMOVE">Delete All</button>
+    </div>
+</div>
+<hr>
+<div class="d-flex justify-content-center" style="padding: 20px">
+    <div class="row text-center">
+        <div class="col">Create person(s) with name:</div>
+        <div class="col"><input id="name" type="text"></div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col">Create person(s) with surname:</div>
+        <div class="col"><input id="surname" type="text"></div>
+    </div>
+    <div class="row text-center">
+        <div class="col">Create person(s) with email:</div>
+        <div class="col"><input id="email" type="email"></div>
+    </div>
+    <div class="row text-center">
+        <div class="col">Create person(s) with age: </div>
+        <div class="col"><input id="age" type="number"></div>
+    </div>
+    <div class="row text-center">
+        <div class="col">Create person(s) with date of birth:</div>
+        <div class="col"><input id="birth" type="date"></div>
+    </div>
+
+    </div>
+    <div class="d-flex justify-content-center" style="padding: 20px">
+        <button type="button" id="btnADD">Create new entry</button>
+    </div>
+</div>
+<hr>
+
+<div class="d-flex justify-content-center" >
+    <div class="row text-center">
+        Update person(s) with name: <input id="updateName" type="text">
+        Change parameter:
+        <select id="updateColumn" name="cars">
+            <option value="name">Name</option>
+            <option value="surname">Surname</option>
+            <option value="dateOfBirth">Date Of Birth</option>
+            <option value="email">Email</option>
+            <option value="age">Age</option>
+        </select>
+        Value: <input id="updateValue" type="text">
+        <button type="button" id="btnUpdate">Update</button>
+    </div>
+</div>
+<hr>
+
+
 </body>
-<script type="text/javascript" src="foundation_task5.js"></script>
+<script type="text/javascript" src="foundation_task7.js"></script>
 </html>
