@@ -138,19 +138,28 @@ $(function () {
 function addMembers(item, index) {
     let startHTML = `<div class="d-flex justify-content-center" >
                                 <div class="row text-center">`;
-    let innerHTML = item.name + " was born " + item.dateOfBirth;
+    let innerHTML = `${item.name} was born ${item.dateOfBirth}. Has The email adress ${item.email} and is ${item.age} years old.`  ;
     let outputHTML = startHTML + innerHTML + "</div>";
     $("#output").append(outputHTML);
 }
 
 function validateInputByID(inputID) {
-    let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let format = /[!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
     if ($("#" + inputID).val().length == 0) {
         $("#output").empty();
         let startHTML = `<div class="d-flex justify-content-center" >
                                 <div class="row text-center">`;
         let innerHTML = "Field was left empty";
+        let outputHTML = startHTML + innerHTML + "</div></div>";
+        $("#output").append(outputHTML);
+        $("#" + inputID).addClass(' border-danger')
+        return 1
+    } else if ($("#" + inputID).val().length > 20) {
+        $("#output").empty();
+        let startHTML = `<div class="d-flex justify-content-center" >
+                                <div class="row text-center">`;
+        let innerHTML = "Too many characters in the feild please limit it to 20 in total";
         let outputHTML = startHTML + innerHTML + "</div></div>";
         $("#output").append(outputHTML);
         $("#" + inputID).addClass(' border-danger')
