@@ -11,6 +11,7 @@ $(function () {
             }
             $.post('foundation_task7.php', body, function (response) {
                 let persons = JSON.parse(response);
+                $("#loadName").val("")
                 $("#output").empty();
 
 
@@ -40,7 +41,9 @@ $(function () {
                 "value": $("#deleteName").val()
             }
             $.post('foundation_task7.php', body, function (response) {
-                    $("#output").empty();
+                $("#deleteName").val("")
+
+                $("#output").empty();
 
                     let startHTML = `<div class="d-flex justify-content-center" >
                                 <div class="row text-center">`;
@@ -144,7 +147,7 @@ function addMembers(item, index) {
 }
 
 function validateInputByID(inputID) {
-    let format = /[!#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let format = /[!#$%^&*()_+=\[\]{};':"\\|,<>?]+/;
 
     if ($("#" + inputID).val().length == 0) {
         $("#output").empty();
