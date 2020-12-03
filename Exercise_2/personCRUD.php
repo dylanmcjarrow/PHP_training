@@ -34,6 +34,44 @@ class PersonCRUD
         }
 
     }
+
+    public function getUsernames($tablename)
+    {
+
+
+        $sql = "SELECT username FROM " . $tablename . ";";
+        $result = $this->conn->query($sql);
+        $outArr = [];
+        while ($row = $result->fetch_assoc()) {
+            array_push($outArr, $row);
+        }
+        return $outArr;
+
+
+    }
+
+    public function checkLogin($tablename, $username, $password)
+    {
+        session_start();
+
+        $sql = "SELECT username,password FROM " . $tablename . " WHERE username = '" . $username . "';";
+        $result = $this->conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+
+            if (password_verify($password,$row['password'] )) {
+                $_SESSION["username"] = $username;
+                echo 0;
+                return;
+
+            }
+        }
+        echo 1;
+
+    }
 }
+
+//$pObj = new PersonCRUD('messageApp');
+//echo $pObj->checkLogin("Persons", "blly", 'billy');
+
 
 ?>

@@ -9,6 +9,17 @@
         body {
             background-color: #111;
         }
+        .hypeHid {
+            color: #111;
+            text-decoration: none;
+        }
+
+        .hypeHid:hover {
+            color: #100f0f;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
 
         .title {
             font-family: "Montserrat";
@@ -33,11 +44,14 @@
 </head>
 <body>
 <div class="jumbotron d-flex ">
-    <div class="container text-center title">
-        <h1 class="display-4">MSG</h1>
-        <p class="lead">Stay Social.</p>
-    </div>
-
+    <a class="hypeHid" href="#" onclick="mainpage();">
+        <div class="container text-center title">
+            <a class="hypeHid" href="#" onclick="mainpage();">
+                <h1 class="display-4">MSG</h1>
+                <p class="lead">Forever Social.</p>
+            </a>
+        </div>
+    </a>
 </div>
 <div class="container-fluid " style="padding: 15px">
     <div class="row ">
@@ -91,9 +105,10 @@
                 </div>
 
             </div>
-            <div class="input-group input-group-lg">
-                <button id="signupBtn" class="btn btn-primary">Sign Up</button>
-                <button id="returnBtnSignup" class="btn btn-secondary">Return</button>
+            <div class="input-group input-group-lg " style="padding-top: 8px">
+                <button id="signupBtn" class="btn btn-primary"style="margin-right: 5px">Sign Up</button>
+                <button id="returnBtnSignup" class="btn btn-secondary" style="margin-right: 30px">Return</button>
+                <p style="margin-top: 0.5em">* All fields required</p>
             </div>
 
         </div>

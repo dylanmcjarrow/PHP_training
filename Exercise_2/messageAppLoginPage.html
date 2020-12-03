@@ -5,8 +5,20 @@
 
 
         @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
         body {
             background-color: #111;
+        }
+
+        .hypeHid {
+            color: #111;
+            text-decoration: none;
+        }
+
+        .hypeHid:hover {
+            color: #100f0f;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .title {
@@ -33,7 +45,6 @@
         }
 
 
-
     </style>
 
     <meta charset="UTF-8">
@@ -47,10 +58,12 @@
 </head>
 <body>
 <div class="jumbotron d-flex title">
-    <div class="container text-center">
-        <h1 class="display-4 ">MSG</h1>
-        <p class="lead">Stay Social.</p>
-    </div>
+    <a class="hypeHid" href="#" onclick="mainpage();">
+        <div class="container text-center">
+            <h1 class="display-4 "> MSG </h1>
+            <p class="lead">Stay Social.</p>
+        </div>
+    </a>
 
 </div>
 <div class="container-fluid " style="padding: 15px">
@@ -68,19 +81,21 @@
                 <div class="input-group-prepend ">
                     <span class="input-group-text" id="basic-addon2">#</span>
                 </div>
-                <input id="LoginPassword" type="password" class="form-control" placeholder="Password" aria-label="password"
+                <input id="LoginPassword" type="password" class="form-control" placeholder="Password"
+                       aria-label="password"
                        aria-describedby="basic-addon1">
             </div>
             <div class="input-group input-group-lg mb-3">
                 <button id="loginBtn" type="button" class="btn btn-primary btn-lg btn-block">Login</button>
-                <button id="registerBtn" type="button" class="btn btn-secondary btn-lg btn-block">Register new account</button>
+                <button id="registerBtn" type="button" class="btn btn-secondary btn-lg btn-block">Register new account
+                </button>
             </div>
 
         </div>
         <div class="col-sm text-center"></div>
     </div>
 </div>
-
+<div style="margin-bottom: 5em"></div>
 
 </body>
 <script type="text/javascript" src="messageAppLogin.js"></script>

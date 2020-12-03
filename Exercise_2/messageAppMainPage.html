@@ -5,9 +5,22 @@
 
 
         @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
         body {
             background-color: #111;
         }
+
+        .hypeHid {
+            color: #111;
+            text-decoration: none;
+        }
+
+        .hypeHid:hover {
+            color: #100f0f;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
 
         .title {
             font-family: "Montserrat";
@@ -31,11 +44,16 @@
 </head>
 <body>
 <div class="jumbotron d-flex ">
-    <div class="container text-center title">
-        <h1 class="display-4">MSG</h1>
-        <p class="lead">Stay Social.</p>
-    </div>
+    <a class="hypeHid" href="#" onclick="mainpage();">
+        <div class="container text-center title">
+            <a class="hypeHid" href="#" onclick="mainpage();">
+                <h1 class="display-4">MSG</h1>
+                <p class="lead">Forever Social.</p>
+            </a>
+        </div>
+    </a>
 </div>
+
 
 </body>
 <script type="text/javascript" src="messageAppMain.js"></script>
