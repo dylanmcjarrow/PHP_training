@@ -100,12 +100,13 @@ $(function () {
                     
                 </tr>
                 `
+                let heptNum = Math.floor(Math.random() * 36 ) + ".jpg"
                 let tempHTML_R = `
                 
                 <tr>
                 <td rowspan="3">
                         
-                           <div style="max-width:40rem;
+                           <div style="max-width:40vw;
                                         word-wrap:break-word;">
                                 ${postText}
                             </div> 
@@ -113,15 +114,15 @@ $(function () {
                     </td>
                     
                     <td  valign="top" style="border-bottom:0px  #FFF">
-                        <p style="font-family: 'Roboto Mono', monospace;">@${username}</p> 
+                        <p style="font-family: 'Roboto Mono', monospace;font-size: 100%">@${username}</p> 
                     </td>
                 </tr>
                 <tr>
-                     <td valign="center" valign="top" style="border-bottom:0px  #FFF">
+                     <td valign="center" valign="top" style="border-bottom:0px  #000">
                          <div class="make_text_center_container">
-                            <img  src="userImage.png" style="width:75%;height:75%">
+                            <img  src="heptopodLan/`+heptNum+`" style="width:70%;height:70%">
                             <div class="make_text_center">
-                                <h1 class=" display-4 " style="font-family: 'Major Mono Display', monospace;"> ${userPIC} </h1>
+                                <h1 class=" display-4 " style="font-family: 'Major Mono Display', monospace;color: black;font-size: 6rem"> ${userPIC} </h1>
                             </div>
                         </div>
                     </td>
@@ -153,6 +154,13 @@ $(function () {
 
     $("#homeBtn").click(function () {
         window.location.replace("/messageAppMainPage.html")
+    })
+
+    $("#profileBtn").click(function () {
+        let body = {"method": "logout"}
+        $.post('mesageAppAPI.php', body, function () {
+            window.location.reload()
+        });
     })
 
     $("#mainPagePostBtn").click(function (){
