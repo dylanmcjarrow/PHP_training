@@ -4,7 +4,7 @@ include "foundation_task6_class.php";
 
 $time_start = microtime(true);
 
-$crudObj = new PersonCRUD("foundation_task6");
+$crudObj = new PersonsCRUD("foundation_task6");
 
 
 $personObj = [

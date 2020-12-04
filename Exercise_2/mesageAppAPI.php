@@ -1,10 +1,12 @@
 <?php
 
-include "personCRUD.php";
+//include "personsCRUD.php";
 include "postCRUD.php";
 
 
-$pObj = new PersonCRUD("messageApp");
+$pObj = new PersonsCRUD("messageApp");
+$pstObj = new postCrud("messageApp");
+
 
 switch ($_POST['method']) {
 
@@ -64,7 +66,49 @@ switch ($_POST['method']) {
         session_unset();
         session_destroy();
         break;
+
+    case "getPosts":
+        $result = $pstObj->getPosts("Posts", $_POST["numberOfPosts"]);
+        foreach ($result as $row) {
+
+            $myArray[] = $row;
+        }
+
+        echo json_encode($myArray);
+
+
+        break;
+
+    case "makePost":
+        session_start();
+        $username =  $_SESSION["username"];
+
+        $result = $pObj->getUserId("Persons",$username);
+
+        $myArray = [];
+        foreach ($result as $row) {$myArray[] = $row;}
+
+        $userID = $myArray[0]["userID"];
+
+        $post = [
+            "postText" => $_POST["postText"],
+            "postTimeStmp" => date("m-d h:i"),
+            "userID"=> $userID
+        ];
+
+
+        $result = $pstObj->makePost("Posts", $post);
+        echo $result;
+
+
+
+        break;
 }
+
+
+//$result = $pObj->getUserId("Persons","dylanmcjarrow");
+//$myArray = [];
+//foreach ($result as $row) { echo $row["userID"];}
 
 
 ?>

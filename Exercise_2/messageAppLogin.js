@@ -1,59 +1,87 @@
 $(function () {
+
+    $("#jumboimage").attr("src", Math.floor(Math.random() * (4) + 1) + ".jpg")
+
+
+    $("#LoginPassword").keyup(function(e){
+        var code = e.key; // recommended to use e.key, it's normalized across devices and languages
+        if(code==="Enter") e.preventDefault();
+        if(code===" " || code==="Enter" || code===","|| code===";"){
+
+
+
+                let loginBtn_element= document.getElementById("loginBtn")
+
+                var clickEvent = new Event( 'click' ); // Create the event.
+            loginBtn_element.dispatchEvent( clickEvent );    // Dispatch the event.
+
+
+        } // missing closing if brace
+    });
+
     $("#registerBtn").click(function () {
 
-        window.location.replace("/messageAppSignUp.html");
+        let body = {
+            "method": "getSessionUser"
+        }
+        $.post('mesageAppAPI.php', body, function (response) {
+                if (response.length == 0) {
+                    window.location.replace("/messageAppSignUp.html");
+                }
+            }
+        );
+
 
     })
     let loggedin = 0;
     $("#loginBtn").click(function () {
         if (loggedin == 1) {
             let body = {"method": "logout"}
-            $.post('mesageAppAPI.php', body,function () {
+            $.post('mesageAppAPI.php', body, function () {
                 window.location.reload()
             });
 
 
         } else {
 
-        let failed_inputs = 0
-        let psword_inputs = ["LoginUsername", "LoginPassword"]
-        let format = /[()_\[\]{};':"\\|<>]+/;
+            let failed_inputs = 0
+            let psword_inputs = ["LoginUsername", "LoginPassword"]
+            let format = /[()_\[\]{};':"\\|<>]+/;
 
-        psword_inputs.forEach(function (inputID) {
-
-
-            if ($("#" + inputID).val().length == 0) {
-                $("#" + inputID).val("")
-                $("#" + inputID).addClass(' border-danger')
-                failed_inputs = failed_inputs + 1
-
-            } else if ($("#" + inputID).val().length > 20) {
-                $("#" + inputID).val("")
-
-                $("#" + inputID).addClass(' border-danger')
-                failed_inputs = failed_inputs + 1
+            psword_inputs.forEach(function (inputID) {
 
 
-            } else if (format.test($("#" + inputID).val())) {
-                let format = /[()_\[\]{};':"\\|<>]+/;
+                if ($("#" + inputID).val().length == 0) {
+                    $("#" + inputID).val("")
+                    $("#" + inputID).addClass(' border-danger')
+                    failed_inputs = failed_inputs + 1
 
-                $("#" + inputID).val("")
-                $("#output").empty();
+                } else if ($("#" + inputID).val().length > 20) {
+                    $("#" + inputID).val("")
 
-                $("#" + inputID).addClass(' border-danger')
-                failed_inputs = failed_inputs + 1
-            } else {
-                try {
-                    $("#" + inputID).removeClass(' border-danger')
-                } catch (e) {
-                    console.log(e)
+                    $("#" + inputID).addClass(' border-danger')
+                    failed_inputs = failed_inputs + 1
+
+
+                } else if (format.test($("#" + inputID).val())) {
+                    let format = /[()_\[\]{};':"\\|<>]+/;
+
+                    $("#" + inputID).val("")
+                    $("#output").empty();
+
+                    $("#" + inputID).addClass(' border-danger')
+                    failed_inputs = failed_inputs + 1
+                } else {
+                    try {
+                        $("#" + inputID).removeClass(' border-danger')
+                    } catch (e) {
+                        console.log(e)
+                    }
+
                 }
 
-            }
 
-
-        })
-
+            })
 
 
             if (failed_inputs == 0) {
@@ -84,8 +112,8 @@ $(function () {
             if (response.length > 0) {
                 loggedin = 1
                 $("#loginBtn").html("Logout")
-                $("#LoginUsername").prop( "disabled", true );
-                $("#LoginPassword").prop( "disabled", true );
+                $("#LoginUsername").prop("disabled", true);
+                $("#LoginPassword").prop("disabled", true);
             }
         }
     );
@@ -105,7 +133,20 @@ $(function () {
 })
 
 function mainpage() {
-    window.location.replace("/messageAppMainPage.html");
+    let body = {
+        "method": "getSessionUser"
+    }
+    $.post('mesageAppAPI.php', body, function (response) {
+        console.log(response)
+            if (response.length == 0) {
+                window.location.replace("/messageAppLoginPage.html")
+            } else {
+                window.location.replace("/messageAppMainPage.html");
+            }
+        }
+    );
+
 
 }
+
 

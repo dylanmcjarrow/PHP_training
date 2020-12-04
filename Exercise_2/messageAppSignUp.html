@@ -1,38 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
 
 
-        @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-        body {
-            background-color: #111;
-        }
-        .hypeHid {
-            color: #111;
-            text-decoration: none;
-        }
-
-        .hypeHid:hover {
-            color: #100f0f;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-
-        .title {
-            font-family: "Montserrat";
-            text-align: center;
-            color: #000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            letter-spacing: 1px;
-        }
-    </style>
-
+    <link rel="stylesheet" href="pageStyles.css">
     <meta charset="UTF-8">
     <title>MSG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,14 +15,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="jumbotron d-flex ">
-    <a class="hypeHid" href="#" onclick="mainpage();">
-        <div class="container text-center title">
-            <a class="hypeHid" href="#" onclick="mainpage();">
-                <h1 class="display-4">MSG</h1>
-                <p class="lead">Forever Social.</p>
-            </a>
+<div class="jumbotron d-flex title" style="background-color: #ECECEE;height: 270px">
+        <div class="make_text_center_container">
+
+        <img id="jumboimage" src="0.jpg">
+        <div class="make_text_center ">
+            <h1 class=" display-4 "> MSG </h1>
+            <p class=" lead">Stay Social.</p>
         </div>
+
+    </div>
     </a>
 </div>
 <div class="container-fluid " style="padding: 15px">
@@ -73,7 +47,7 @@
             </div>
 
             <div class="input-group input-group-lg">
-                <input id="email" type="email" class="form-control">
+                <input id="email" type="email" class="form-control" pattern=".+@globex.com" size="30">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Email</span>
                 </div>

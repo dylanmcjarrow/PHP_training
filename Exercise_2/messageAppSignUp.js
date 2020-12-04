@@ -13,6 +13,8 @@ $.post('mesageAppAPI.php', body, function (response) {
 
 $(function () {
 
+    $("#jumboimage").attr("src",Math.floor(Math.random() * (4 ) + 1)+".jpg")
+
     $("#returnBtnSignup").click(function () {
         window.location.replace("/messageAppLoginPage.html");
     })
@@ -111,7 +113,7 @@ $(function () {
                     "method": "createPerson",
                     "firstname": $("#firstname").val(),
                     "surname": $("#surname").val(),
-                    "email": $("#email").val(),
+                    "email": $("#email").val().replace(/\s+/g, ''),
                     "username": $("#username").val().replace(/\s+/g, ''),
                     "password": $("#password").val()
                 }
@@ -146,7 +148,7 @@ $(function () {
 
 function validateInputByID(inputID) {
     console.log("validoit")
-    let format = /[!#$%^&*()_+=\[\]{};':"\\|,<>?]+/;
+    let format = /[()_+\-=\[\]{};':"\\|<>\/]/;
 
     if ($("#" + inputID).val().length == 0) {
         $("#" + inputID).val("")
@@ -158,7 +160,7 @@ function validateInputByID(inputID) {
         $("#output").append(outputHTML);
         $("#" + inputID).addClass(' border-danger')
         return 1
-    } else if ($("#" + inputID).val().length > 20) {
+    } else if ($("#" + inputID).val().length > 40) {
         $("#" + inputID).val("")
         $("#output").empty();
         let startHTML = `<div class="d-flex justify-content-center" >
@@ -191,6 +193,15 @@ function validateInputByID(inputID) {
 }
 
 function mainpage() {
-    window.location.replace("/messageAppMainPage.html");
+    let body = {
+        "method": "getSessionUser"
+    }
+    $.post('mesageAppAPI.php', body, function (response) {
+            if (response.length != 0) {
+                window.location.replace("/messageAppMainPage.html");            }
+        }
+    );
+
+
 
 }
