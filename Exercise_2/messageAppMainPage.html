@@ -19,12 +19,8 @@
             }
         }
 
-        .rcorners2 {
-            border-radius: 2em;
-            border: 3px solid #000;
-            padding: 20px;
-            width: auto;
-            height: 4em;
+        .scroll::-webkit-scrollbar {
+            display: none;
         }
 
     </style>
@@ -63,12 +59,11 @@
 <div id="navbar" class="text-center">
 
     <div class="d-flex justify-content-center">
-        <a id="homeBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Home</a>
+        <a id="homeBtn" class="navBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Home</a>
 
+        <a id="searchBtn" class="navBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Search</a>
 
-        <a id="searchBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Search</a>
-
-        <a id="profileBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Profile</a>
+        <a id="profileBtn" class="navBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Profile</a>
     </div>
 
 </div>
@@ -87,26 +82,28 @@
                     border-top-right-radius: 0em;
                     border-bottom-left-radius: 2em;
                     border-bottom-right-radius: 0em;
-                    border: 2px solid #000;
+                    border: 1px solid #000;
                     ">
                 <a id="mainPagePostBtn" onclick="" style="cursor: pointer;">Post</a>
             </span>
                     </div>
-                    <input id="postTextInput"
+                    <textarea id="postTextInput"
                            type="text"
-                           class="form-control" placeholder="Create your post here .."
+                           class="form-control scroll" placeholder="Create your post here .."
                            aria-label="Username"
                            aria-describedby="basic-addon1"
                            style="
-                   height: 4em;
+
                    font-size: large;
                    font-family: 'Montserrat', sans-serif;
+                   min-height: 4em;
                     border-top-left-radius: 0em;
                     border-top-right-radius: 2em;
                     border-bottom-left-radius: 0em;
                     border-bottom-right-radius: 2em;
-                    border: 2px solid #000;"
-                    >
+                    border: 1px solid #000;
+                    resize: vertical;"
+                    ></textarea>
 
 
                 </div>

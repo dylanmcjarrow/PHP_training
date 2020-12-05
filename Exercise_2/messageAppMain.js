@@ -100,7 +100,7 @@ $(function () {
                     
                 </tr>
                 `
-                let heptNum = Math.floor(Math.random() * 36 ) + ".jpg"
+                let heptNum = Math.floor(Math.random() * 36) + ".jpg"
                 let tempHTML_R = `
                 
                 <tr>
@@ -120,7 +120,7 @@ $(function () {
                 <tr>
                      <td valign="center" valign="top" style="border-bottom:0px  #000">
                          <div class="make_text_center_container">
-                            <img  src="heptopodLan/`+heptNum+`" style="width:70%;height:70%">
+                            <img  src="heptopodLan/` + heptNum + `" style="width:35vh;">
                             <div class="make_text_center">
                                 <h1 class=" display-4 " style="font-family: 'Major Mono Display', monospace;color: black;font-size: 6rem"> ${userPIC} </h1>
                             </div>
@@ -152,6 +152,13 @@ $(function () {
         }
     );
 
+    $("#navbar").hover(function () {
+            $(".navBtn").css("color","#000")
+        },
+        function () {
+            $(".navBtn").css("color","#FFF")
+        })
+
     $("#homeBtn").click(function () {
         window.location.replace("/messageAppMainPage.html")
     })
@@ -162,20 +169,34 @@ $(function () {
             window.location.reload()
         });
     })
+    $("#postTextInput").keyup("input", function () {
+        $("#postTextInput").css("height", ""); //reset the height
+        $("#postTextInput").css("height", Math.min($("#postTextInput").prop('scrollHeight'), 200) + "px");
+    });
+    $("#mainPagePostBtn").click(function () {
 
-    $("#mainPagePostBtn").click(function (){
+        let inputText = $("#postTextInput").val()
+
+        let charsToRemove = ["<",">","#","$","@","%","^","{","}","\"","`",":","="]
+        charsToRemove.forEach(function (character) {
+
+            inputText = inputText.replace(character,"")
+
+        })
+
         let body = {
             "method": "makePost",
-            "postText": ($("#postTextInput").val()).replace(/[#$%^&*<>']/, "")
+            "postText": inputText
         }
         $.post('mesageAppAPI.php', body, function (response) {
 
 
-            if(response == 0){
+            if (response == 0) {
+                $("#postTextInput").val("")
                 window.location.reload()
-            }else{
+            } else {
                 console.log(response)
-                }
+            }
 
         })
     })
