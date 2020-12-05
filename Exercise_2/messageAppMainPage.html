@@ -61,12 +61,14 @@
         </a>
     </div>
 </div>
+
+
 <div id="navbar" class="text-center">
 
     <div class="d-flex justify-content-center">
         <a id="homeBtn" class="navBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Home</a>
 
-        <a id="searchBtn" class="navBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Search</a>
+<!--        <a id="searchBtn" class="navBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Search</a>-->
 
 
         <div class="d-flex">
@@ -75,7 +77,7 @@
             <div class="col" id="shizwanidropdown" style="display: none;">
 
                 <div class="row">
-                    <a  href="" onclick="" style="font-family: 'Montserrat', sans-serif">Go to profile</a>
+                    <a  href="messageAppProfilePage.php?user=personalprofileload" style="font-family: 'Montserrat', sans-serif">Go to profile</a>
                 </div>
                 <div class="row logoutBtnMainPage">
                     <a class="logoutBtnMainPage" href="" onclick="logout()" style="font-family: 'Montserrat', sans-serif">Logout</a>
@@ -90,6 +92,8 @@
     </div>
 
 </div>
+
+
 <div class="row">
     <div class="col-sm text-center"></div>
     <div class="col text-center" style="min-width:75% ">
@@ -105,7 +109,8 @@
                     border-top-right-radius: 0em;
                     border-bottom-left-radius: 2em;
                     border-bottom-right-radius: 0em;
-                    border: 1px solid #000;
+                    border: 2px solid #000;
+                    border-right: none;
                     ">
                 <a id="mainPagePostBtn" onclick="" style="cursor: pointer;">Post</a>
             </span>
@@ -124,7 +129,8 @@
                     border-top-right-radius: 2em;
                     border-bottom-left-radius: 0em;
                     border-bottom-right-radius: 2em;
-                    border: 1px solid #000;
+                    border: 2px solid #000;
+                    border-left: 1px solid #000;
                     resize: vertical;"
                     ></textarea>
 

@@ -56,6 +56,17 @@ class postCrud
         }
 
     }
+
+    public function deletePost($tablename,$postID){
+
+        $sql = "DELETE FROM " . $tablename . " WHERE postOrder ='" . $postID . "';";
+        if ($this->conn->query($sql) === TRUE) {
+            return 0;
+        } else {
+            return $this->conn->error;
+        }
+
+    }
 }
 
 //$pObj = new postCrud("messageApp");

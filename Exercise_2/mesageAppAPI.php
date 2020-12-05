@@ -81,19 +81,21 @@ switch ($_POST['method']) {
 
     case "makePost":
         session_start();
-        $username =  $_SESSION["username"];
+        $username = $_SESSION["username"];
 
-        $result = $pObj->getUserId("Persons",$username);
+        $result = $pObj->getUserId("Persons", $username);
 
         $myArray = [];
-        foreach ($result as $row) {$myArray[] = $row;}
+        foreach ($result as $row) {
+            $myArray[] = $row;
+        }
 
         $userID = $myArray[0]["userID"];
 
         $post = [
             "postText" => $_POST["postText"],
             "postTimeStmp" => date("m-d h:i"),
-            "userID"=> $userID
+            "userID" => $userID
         ];
 
 
@@ -101,8 +103,27 @@ switch ($_POST['method']) {
         echo $result;
 
 
+        break;
+
+    case "deletePost":
+
+        $result = $pstObj->deletePost("Posts", $_POST["postID"]);
+        echo $result;
 
         break;
+
+    case "getPostsByUser":
+        $result = $pstObj->getPosts("Posts","username");
+        foreach ($result as $row) {
+
+            $myArray[] = $row;
+        }
+
+        echo json_encode($myArray);
+
+
+        break;
+
 }
 
 

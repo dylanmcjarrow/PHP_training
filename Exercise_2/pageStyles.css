@@ -47,16 +47,16 @@ th, td {
 }
 
 #navbar #shizwanidropdown{
-    background-image: linear-gradient(to top, rgb(255, 255, 255), rgb(255, 255, 255));
-
+    background-color: white;
 }
 
 #navbar:hover #shizwanidropdown{
-    background-image: linear-gradient(to bottom, rgb(50, 50, 50), rgb(0, 0, 0));
+    background-color: black
 
 }
 #navbar:hover #shizwanidropdown div a{
     color: white;
+
 
 }
 
@@ -70,7 +70,7 @@ th, td {
 
     z-index: 600;
     overflow: hidden;
-    background-image: linear-gradient(to bottom, rgb(50, 50, 50), rgb(0, 0, 0));
+    background-color: black
 }
 
 /* Navbar links */

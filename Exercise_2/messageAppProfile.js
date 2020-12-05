@@ -10,38 +10,21 @@ $.post('mesageAppAPI.php', body, function (response) {
     }
 );
 
-function mainpage() {
-    let body = {
-        "method": "getSessionUser"
-    }
-    $.post('mesageAppAPI.php', body, function (response) {
-            if (response.length == 0) {
-                window.location.replace("/messageAppLoginPage.html")
-            } else {
-                window.location.replace("/messageAppMainPage.html");
-            }
-        }
-    );
+
+$(function (){
 
 
-}
 
-
-$(function () {
-
-    let body = {
-        "method": "getPosts",
-        "numberOfPosts": "50"
+     body = {
+        "method": "getPostsByUser",
+        "username": $(".usernameProfilepage").attr("id")
     }
     $.post('mesageAppAPI.php', body, function (response) {
 
             let posts = JSON.parse(response);
 
 
-            let startHTML_F = `<tr >
-                                <th style="text-align: center">User</th>
-                                <th style="width: 75%;text-align: center">Post</th>
-                             </tr>`
+
             let startHTML_R = `<tr >
                                 <th style="width: 60%;text-align: center">Post</th>
                                 <th style="text-align: center">User</th>
@@ -50,42 +33,42 @@ $(function () {
             let innerHTML = "";
             let flip = 0;
 
-        let body = {
-            "method": "getSessionUser"
-        }
-        $.post('mesageAppAPI.php', body, function (response) {
-                let currentUser = ""
-                currentUser = response
+            let body = {
+                "method": "getSessionUser"
+            }
+            $.post('mesageAppAPI.php', body, function (response) {
+                    let currentUser = ""
+                    currentUser = response
 
-            posts.forEach(function (row) {
-                // console.log(row)
-
-
+                    posts.forEach(function (row) {
+                        // console.log(row)
 
 
-                let username = row["username"]
-                let deleteDisplay = "none"
-
-                console.log()
-                if (currentUser === username){
-                    deleteDisplay = "inline"
-                }
-
-                let postText = row["postText"]
-                let fname = row["fisrtname"]
-                let sname = row["lastname"]
-                let postID = row["postOrder"]
-                let postTimeStmp = row["postTimeStmp"]
-                let userPIC = (fname.charAt(0) + sname.charAt(0)).toUpperCase()
-                let pageLayout = ""
-                if ($(window).height() >= $(window).width()) {
-                    pageLayout = "vw"
-                } else {
-                    pageLayout = "vh"
-                }
 
 
-                let tempHTML_F = `
+                        let username = row["username"]
+                        let deleteDisplay = "none"
+
+                        console.log()
+                        if (currentUser === username){
+                            deleteDisplay = "inline"
+                        }
+
+                        let postText = row["postText"]
+                        let fname = row["fisrtname"]
+                        let sname = row["lastname"]
+                        let postID = row["postOrder"]
+                        let postTimeStmp = row["postTimeStmp"]
+                        let userPIC = (fname.charAt(0) + sname.charAt(0)).toUpperCase()
+                        let pageLayout = ""
+                        if ($(window).height() >= $(window).width()) {
+                            pageLayout = "vw"
+                        } else {
+                            pageLayout = "vh"
+                        }
+
+
+                        let tempHTML_F = `
                 
                 <tr>
                     <td  valign="top" style="border-bottom:0px  #FFF">
@@ -128,8 +111,8 @@ $(function () {
                     
                 </tr>
                 `
-                let heptNum = Math.floor(Math.random() * 36) + ".jpg"
-                let tempHTML_R = `
+                        let heptNum = Math.floor(Math.random() * 36) + ".jpg"
+                        let tempHTML_R = `
                 
                 <tr>
                 <td rowspan="3">
@@ -171,18 +154,20 @@ $(function () {
                 `
 
 
-                innerHTML = innerHTML + tempHTML_R
-            });
+                        innerHTML = innerHTML + tempHTML_R
+                    });
 
-            let outputHTML = startHTML_R + innerHTML + "";
+                    let outputHTML = startHTML_R + innerHTML + "";
 
-            $("#postsTableMainPage").html(outputHTML)
+                    $("#postsTableMainPage").html(outputHTML)
 
-            }
-        );
+                }
+            );
 
         }
     );
+
+
 
     $("#navbar").hover(function () {
             $(".navBtn").css("color", "#000")
@@ -200,80 +185,17 @@ $(function () {
         $("#shizwanidropdown").show(100)
 
     })
-    $("#postTextInput").keyup("input", function () {
-        $("#postTextInput").css("height", ""); //reset the height
-        $("#postTextInput").css("height", Math.min($("#postTextInput").prop('scrollHeight'), 200) + "px");
-    });
-    $("#mainPagePostBtn").click(function () {
-
-        let inputText = $("#postTextInput").val()
-
-        let charsToRemove = ["<", ">", "#", "$", "@", "%", "^", "{", "}", "\"", "`", ":", "=","'","–","[","]","'"]
-        charsToRemove.forEach(function (character) {
-            inputText = inputText.replaceAll(character, "")
-        })
-
-        inputText = inputText.replaceAll("\n", "<br>")
-        // console.log(inputText)
-
-        let body = {
-            "method": "makePost",
-            "postText": inputText
-        }
-        $.post('mesageAppAPI.php', body, function (response) {
-
-
-            if (response == 0) {
-                $("#postTextInput").val("")
-                window.location.reload()
-            } else {
-                console.log(response)
-            }
-
-        })
-    })
-
-    $("#jumboimage").attr("src", Math.floor(Math.random() * (4) + 1) + ".jpg")
-
-    let offset = $("#navbar").offset()
-    console.log(offset)
-    window.onscroll = function () {
-
-        if (window.pageYOffset >= offset["top"]) {
-            $("#navbar").addClass("sticky")
-            $("#pinputOnmainpage").css("margin-top", "7em")
-        } else {
-            $("#navbar").removeClass("sticky");
-            $("#pinputOnmainpage").css("margin-top", "3em")
-
-        }
-
-    };
 })
 
-
-window.onclick = function (e) {
-    if (!$(e.target).is('#profileBtn')) {
-        $("#shizwanidropdown").hide(100)
-    }
-
-}
-
-function logout() {
+function logout(){
     let body = {"method": "logout"}
     $.post('mesageAppAPI.php', body, function () {
         window.location.reload()
     });
 }
+window.onclick = function (e) {
+    if (!$(e.target).is('#profileBtn')) {
+        $("#shizwanidropdown").hide(100)
+    }
 
-function deletePost(postID) {
-    let body = {"method": "deletePost",
-                "postID":postID}
-    $.post('mesageAppAPI.php', body, function (response) {
-        if(response== 0){
-            window.location.reload()
-        }else{
-            console.log(response)
-        }
-    });
 }
