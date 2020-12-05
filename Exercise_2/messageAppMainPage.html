@@ -23,6 +23,11 @@
             display: none;
         }
 
+        .logoutBtnMainPage:hover{
+            background-color: red;
+            color: #ECECEE;
+        }
+
     </style>
 
     <meta charset="UTF-8">
@@ -63,7 +68,25 @@
 
         <a id="searchBtn" class="navBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Search</a>
 
-        <a id="profileBtn" class="navBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Profile</a>
+
+        <div class="d-flex">
+            <a id="profileBtn" class="navBtn " onclick=""
+               style="cursor: pointer; font-size: 2em;padding: 1em">Profile</a>
+            <div class="col" id="shizwanidropdown" style="display: none;">
+
+                <div class="row">
+                    <a  href="" onclick="" style="font-family: 'Montserrat', sans-serif">Go to profile</a>
+                </div>
+                <div class="row logoutBtnMainPage">
+                    <a class="logoutBtnMainPage" href="" onclick="logout()" style="font-family: 'Montserrat', sans-serif">Logout</a>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
     </div>
 
 </div>
@@ -88,11 +111,11 @@
             </span>
                     </div>
                     <textarea id="postTextInput"
-                           type="text"
-                           class="form-control scroll" placeholder="Create your post here .."
-                           aria-label="Username"
-                           aria-describedby="basic-addon1"
-                           style="
+                              type="text"
+                              class="form-control scroll" placeholder="Create your post here .."
+                              aria-label="Username"
+                              aria-describedby="basic-addon1"
+                              style="
 
                    font-size: large;
                    font-family: 'Montserrat', sans-serif;

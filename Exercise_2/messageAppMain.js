@@ -55,8 +55,17 @@ $(function () {
                 let username = row["username"]
                 let fname = row["fisrtname"]
                 let sname = row["lastname"]
+                let postID = row["postOrder"]
                 let postTimeStmp = row["postTimeStmp"]
                 let userPIC = (fname.charAt(0) + sname.charAt(0)).toUpperCase()
+                let pageLayout = ""
+                if ($(window).height() >= $(window).width()) {
+                    pageLayout = "vw"
+                } else {
+                    pageLayout = "vh"
+                }
+
+
                 let tempHTML_F = `
                 
                 <tr>
@@ -114,15 +123,15 @@ $(function () {
                     </td>
                     
                     <td  valign="top" style="border-bottom:0px  #FFF">
-                        <p style="font-family: 'Roboto Mono', monospace;font-size: 100%">@${username}</p> 
+                        <a id="${username}" onclick="console.log($(this).attr('id'))" style="cursor: pointer;font-family: 'Roboto Mono', monospace;font-size: 100%">@${username}</a> 
                     </td>
                 </tr>
                 <tr>
                      <td valign="center" valign="top" style="border-bottom:0px  #000">
                          <div class="make_text_center_container">
-                            <img  src="heptopodLan/` + heptNum + `" style="width:35vh;">
+                            <img  src="heptopodLan/` + heptNum + `" style="width:25${pageLayout};">
                             <div class="make_text_center">
-                                <h1 class=" display-4 " style="font-family: 'Major Mono Display', monospace;color: black;font-size: 6rem"> ${userPIC} </h1>
+                                <h1 class=" display-4 " style="font-family: 'Major Mono Display', monospace;color: black;font-size: 8${pageLayout}"> ${userPIC} </h1>
                             </div>
                         </div>
                     </td>
@@ -153,10 +162,10 @@ $(function () {
     );
 
     $("#navbar").hover(function () {
-            $(".navBtn").css("color","#000")
+            $(".navBtn").css("color", "#000")
         },
         function () {
-            $(".navBtn").css("color","#FFF")
+            $(".navBtn").css("color", "#FFF")
         })
 
     $("#homeBtn").click(function () {
@@ -164,10 +173,9 @@ $(function () {
     })
 
     $("#profileBtn").click(function () {
-        let body = {"method": "logout"}
-        $.post('mesageAppAPI.php', body, function () {
-            window.location.reload()
-        });
+
+        $("#shizwanidropdown").show(100)
+
     })
     $("#postTextInput").keyup("input", function () {
         $("#postTextInput").css("height", ""); //reset the height
@@ -177,10 +185,10 @@ $(function () {
 
         let inputText = $("#postTextInput").val()
 
-        let charsToRemove = ["<",">","#","$","@","%","^","{","}","\"","`",":","="]
+        let charsToRemove = ["<", ">", "#", "$", "@", "%", "^", "{", "}", "\"", "`", ":", "="]
         charsToRemove.forEach(function (character) {
 
-            inputText = inputText.replace(character,"")
+            inputText = inputText.replace(character, "")
 
         })
 
@@ -220,3 +228,16 @@ $(function () {
 })
 
 
+window.onclick = function(e) {
+    if(!$(e.target).is('#profileBtn')) {
+        $("#shizwanidropdown").hide(100)
+    }
+
+}
+
+function logout(){
+    let body = {"method": "logout"}
+    $.post('mesageAppAPI.php', body, function () {
+        window.location.reload()
+    });
+}

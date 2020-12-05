@@ -46,11 +46,29 @@ th, td {
     color: black;
 }
 
+#navbar #shizwanidropdown{
+    background-image: linear-gradient(to top, rgb(255, 255, 255), rgb(255, 255, 255));
 
+}
 
-#navbar {
+#navbar:hover #shizwanidropdown{
+    background-image: linear-gradient(to bottom, rgb(50, 50, 50), rgb(0, 0, 0));
 
-    z-index: 999;
+}
+#navbar:hover #shizwanidropdown div a{
+    color: white;
+
+}
+
+#shizwanidropdown div a {
+    color: black;
+    font-size: 2rem;
+    padding: 10px;
+}
+
+#navbar  {
+
+    z-index: 600;
     overflow: hidden;
     background-image: linear-gradient(to bottom, rgb(50, 50, 50), rgb(0, 0, 0));
 }
@@ -93,4 +111,8 @@ th, td {
     position: relative;
     text-align: center;
     color: white;
+}
+
+.navBtn{
+    font-family: 'Montserrat', sans-serif;
 }
