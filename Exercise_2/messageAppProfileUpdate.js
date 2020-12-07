@@ -3,6 +3,7 @@ let body = {
 }
 $.post('mesageAppAPI.php', body, function (response) {
         if (response.length == 0) {
+            alert("You are not logged in are are gonna be redirected.")
             window.location.replace("/messageAppLoginPage.html")
         } else {
             console.log(response)
@@ -192,7 +193,7 @@ $(function () {
 function logout() {
     let body = {"method": "logout"}
     $.post('mesageAppAPI.php', body, function () {
-        window.location.reload()
+        window.location = "/messageAppLoginPage.html"
     });
 }
 
@@ -217,18 +218,101 @@ function deletePost(postID) {
 
 function updateProfile(URL){
 
-    let body = {"method": "updateProfile",
-                "username": $(".usernameProfilepage").attr("id"),
-                "fisrtname":$("#firstnameInput").val(),
-                "lastname":$("#lastnameInput").val(),
-                "email":$("#emailInput").val()
-    }
-    $.post('mesageAppAPI.php', body, function (response) {
-        if(response== 0){
-            window.location = URL
-        }else{
-            console.log(response)
+
+
+    let form_inputs = ["firstnameInput", "lastnameInput", "emailInput"]
+    let failed_inputs = 0
+    form_inputs.forEach(function (inputID) {
+
+        failed_inputs = failed_inputs + validateInputByID(inputID)
+
+    })
+
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test($("#emailInput").val())) {
+
+
+        try {
+            $("#emailInput").removeClass(' border-danger')
+        } catch (e) {
+            console.log(e)
         }
-    });
+
+    } else {
+        $("#emailInput").addClass(' border-danger')
+        failed_inputs = failed_inputs + 1
+
+    }
+
+    if (failed_inputs == 0){
+        let body = {"method": "updateProfile",
+            "username": $(".usernameProfilepage").attr("id"),
+            "fisrtname":$("#firstnameInput").val(),
+            "lastname":$("#lastnameInput").val(),
+            "email":$("#emailInput").val()
+        }
+        $.post('mesageAppAPI.php', body, function (response) {
+            if(response== 0){
+                window.location = URL
+            }else{
+                console.log(response)
+            }
+        });
+    }
+
+
+
+
+
 
 }
+
+function validateInputByID(inputID) {
+    console.log("validoit")
+    let format = /[()_+\-=\[\]{};':"\\|<>\/]/;
+
+    if ($("#" + inputID).val().length == 0) {
+        $("#" + inputID).val("")
+        $("#output").empty();
+        let startHTML = `<div class="d-flex justify-content-center" >
+                                <div class="row text-center">`;
+        let innerHTML = "Field was left empty";
+        let outputHTML = startHTML + innerHTML + "</div></div>";
+        $("#output").append(outputHTML);
+        $("#" + inputID).addClass(' border-danger')
+        return 1
+    } else if ($("#" + inputID).val().length > 30) {
+        $("#" + inputID).val("")
+        $("#output").empty();
+        let startHTML = `<div class="d-flex justify-content-center" >
+                                <div class="row text-center">`;
+        let innerHTML = "Too many characters in the feild please limit it to 20 in total";
+        let outputHTML = startHTML + innerHTML + "</div></div>";
+        $("#output").append(outputHTML);
+        $("#" + inputID).addClass(' border-danger')
+        return 1
+    } else if (format.test($("#" + inputID).val())) {
+        if(inputID != "emailInput"){
+            $("#" + inputID).val("")
+            $("#output").empty();
+            let startHTML = `<div class="d-flex justify-content-center" >
+                                <div class="row text-center">`;
+            let innerHTML = "Field contained shitty characters";
+            let outputHTML = startHTML + innerHTML + "</div></div>";
+            $("#output").append(outputHTML);
+            $("#" + inputID).addClass(' border-danger')
+            return 1
+
+        }
+
+
+    } else {
+        try {
+            $("#" + inputID).removeClass(' border-danger')
+        } catch (e) {
+            console.log(e)
+        }
+        return 0
+    }
+
+}
+

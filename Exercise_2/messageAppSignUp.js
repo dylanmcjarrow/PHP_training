@@ -3,6 +3,8 @@ let body = {
 }
 $.post('mesageAppAPI.php', body, function (response) {
         if (response.length > 0) {
+            alert("You are not logged in are are gonna be redirected.")
+
             window.location.replace("/messageAppLoginPage.html")
         } else {
             console.log(response)
@@ -13,7 +15,7 @@ $.post('mesageAppAPI.php', body, function (response) {
 
 $(function () {
 
-    $("#jumboimage").attr("src",Math.floor(Math.random() * (4 ) + 1)+".jpg")
+    $("#jumboimage").attr("src", Math.floor(Math.random() * (4) + 1) + ".jpg")
 
     $("#returnBtnSignup").click(function () {
         window.location.replace("/messageAppLoginPage.html");
@@ -29,24 +31,27 @@ $(function () {
 
         })
 
-        let psword_inputs = ["password", "password_confirm",, "email"]
-
-
+        let psword_inputs = ["password", "password_confirm","email"]
         psword_inputs.forEach(function (inputID) {
 
 
             let format = /[()_\[\]{};':"\\|<>]+/;
 
             if ($("#" + inputID).val().length == 0) {
-                $("#" + inputID).val("")
-                $("#output").empty();
-                let startHTML = `<div class="d-flex justify-content-center" >
+                if(inputID != "email"){
+
+                    $("#" + inputID).val("")
+                    $("#output").empty();
+                    let startHTML = `<div class="d-flex justify-content-center" >
                                 <div class="row text-center">`;
-                let innerHTML = "Field was left empty";
-                let outputHTML = startHTML + innerHTML + "</div></div>";
-                $("#output").append(outputHTML);
-                $("#" + inputID).addClass(' border-danger')
-                failed_inputs = failed_inputs + 1
+                    let innerHTML = "Field was left empty";
+                    let outputHTML = startHTML + innerHTML + "</div></div>";
+                    $("#output").append(outputHTML);
+                    $("#" + inputID).addClass(' border-danger')
+                    failed_inputs = failed_inputs + 1
+
+                }
+
 
             } else if ($("#" + inputID).val().length > 40) {
                 $("#" + inputID).val("")
@@ -82,12 +87,25 @@ $(function () {
             }
 
 
-
-
-
-
-
         })
+
+
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test($("#email").val())) {
+
+
+            try {
+                $("#email").removeClass(' border-danger')
+            } catch (e) {
+                console.log(e)
+            }
+
+        } else {
+            $("#email").addClass(' border-danger')
+            $("#email").val("")
+            failed_inputs = failed_inputs + 1
+
+        }
+
 
         if ($("#password").val() !== $("#password_confirm").val()) {
             $("#password_confirm").val("")
@@ -198,10 +216,10 @@ function mainpage() {
     }
     $.post('mesageAppAPI.php', body, function (response) {
             if (response.length != 0) {
-                window.location.replace("/messageAppMainPage.html");            }
+                window.location.replace("/messageAppMainPage.html");
+            }
         }
     );
-
 
 
 }

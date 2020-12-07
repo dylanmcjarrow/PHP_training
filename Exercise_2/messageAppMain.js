@@ -3,6 +3,8 @@ let body = {
 }
 $.post('mesageAppAPI.php', body, function (response) {
         if (response.length == 0) {
+            alert("You are not logged in are are gonna be redirected.")
+
             window.location.replace("/messageAppLoginPage.html")
         } else {
             console.log(response)
@@ -202,6 +204,14 @@ $(function () {
     $("#postTextInput").keyup("input", function () {
         $("#postTextInput").css("height", ""); //reset the height
         $("#postTextInput").css("height", Math.min($("#postTextInput").prop('scrollHeight'), 200) + "px");
+
+        let postText = $("#postTextInput").val()
+        if(postText.length>280){
+
+            $("#postTextInput").val(postText.slice(0,280))
+
+        }
+
     });
     $("#mainPagePostBtn").click(function () {
 
@@ -213,7 +223,13 @@ $(function () {
         })
 
         inputText = inputText.replaceAll("\n", "<br>")
-        // console.log(inputText)
+
+
+        if(inputText.length>280){
+
+            inputText = inputText.slice(0,280)
+
+        }
 
         let body = {
             "method": "makePost",
@@ -261,7 +277,7 @@ window.onclick = function (e) {
 function logout() {
     let body = {"method": "logout"}
     $.post('mesageAppAPI.php', body, function () {
-        window.location.reload()
+        window.location = "/messageAppLoginPage.html"
     });
 }
 

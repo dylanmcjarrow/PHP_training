@@ -70,7 +70,7 @@
                     <a  href="messageAppProfilePage.php?user=personalprofileload" style="font-family: 'Montserrat', sans-serif">Go to profile</a>
                 </div>
                 <div class="row logoutBtnMainPage">
-                    <a class="logoutBtnMainPage" href="" onclick="logout()" style="font-family: 'Montserrat', sans-serif">Logout</a>
+                    <a class="logoutBtnMainPage"  onclick="logout()" style="cursor:pointer;font-family: 'Montserrat', sans-serif">Logout</a>
 
                 </div>
 
@@ -91,7 +91,7 @@
         <div class="col-sm text-center"></div>
         <div class="col text-center">
 
-            <div class="container" style="border: 5px solid black;height: 16vw;width: 33vw;vertical-align: center">
+            <div class="container" style="border: 0.4vw  solid black;width: 33vw;vertical-align: center">
 
 
                 <ul style="     list-style-type: none; /* Remove bullets */

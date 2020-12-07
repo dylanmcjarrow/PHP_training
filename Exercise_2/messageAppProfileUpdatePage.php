@@ -69,8 +69,7 @@
                        style="font-family: 'Montserrat', sans-serif">Go to profile</a>
                 </div>
                 <div class="row logoutBtnMainPage">
-                    <a class="logoutBtnMainPage" href="" onclick="logout()"
-                       style="font-family: 'Montserrat', sans-serif">Logout</a>
+                    <a class="logoutBtnMainPage"  onclick="logout()"  style="cursor:pointer;font-family: 'Montserrat', sans-serif">Logout</a>
 
                 </div>
 
@@ -89,7 +88,7 @@
         <div class="col-sm text-center"></div>
         <div class="col text-center">
 
-            <div class="container" style="border: 5px solid black;height: 16vw;width: 33vw;vertical-align: center">
+            <div class="container" style="border: 0.4vw solid black;width: 33vw;vertical-align: center">
 
 
                 <ul style="     list-style-type: none; /* Remove bullets */
@@ -135,7 +134,7 @@
                     <li class="profileTitle">
 
 
-                        <div id="emailProfilePage" style="padding: 0;text-align: left"><input id="emailInput" type="text" value="<?php echo $_GET['email'];  ?>"></div>
+                        <div id="emailProfilePage" style="padding: 0;text-align: left"><input id="emailInput"  value="<?php echo $_GET['email'];  ?>"></div>
                         <div style="float: right">
                             <a id="pageEditBtn" onclick="updateProfile('messageAppProfilePage.php?user=personalprofileload')" style="cursor: pointer;color: black;">&#9745;</a>
 

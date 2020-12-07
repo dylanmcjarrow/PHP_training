@@ -47,7 +47,7 @@ switch ($_POST['method']) {
 
         $result = $pObj->checkLogin("Persons", $username, $password);
         if ($result == 0) {
-//            exit(header("location:messageAppMainPage"));
+            //            exit(header("location:messageAppMainPage"));
             echo $result;
         } else {
             echo "'Invalid Details'";
@@ -113,7 +113,7 @@ switch ($_POST['method']) {
         break;
 
     case "getPostsByUser":
-        $result = $pstObj->getPostsByUser("Posts",$_POST["numberOfPosts"],$_POST["username"]);
+        $result = $pstObj->getPostsByUser("Posts", $_POST["numberOfPosts"], $_POST["username"]);
         foreach ($result as $row) {
 
             $myArray[] = $row;
@@ -127,8 +127,7 @@ switch ($_POST['method']) {
     case "profileDetails":
 
 
-
-         $result = $pObj->profileDetails("Persons",$_POST["username"]);
+        $result = $pObj->profileDetails("Persons", $_POST["username"]);
         foreach ($result as $row) {
 
             $myArray[] = $row;
@@ -140,7 +139,7 @@ switch ($_POST['method']) {
 
     case "updateProfile":
 
-        $result = $pObj->updateUser("Persons",$_POST["username"],$_POST["fisrtname"],$_POST["lastname"],$_POST["email"]);
+        $result = $pObj->updateUser("Persons", $_POST["username"], $_POST["fisrtname"], $_POST["lastname"], $_POST["email"]);
         if ($result == 0) {
             echo $result;
         } else {

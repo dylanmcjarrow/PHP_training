@@ -3,6 +3,8 @@ let body = {
 }
 $.post('mesageAppAPI.php', body, function (response) {
         if (response.length == 0) {
+            alert("You are not logged in are are gonna be redirected.")
+
             window.location.replace("/messageAppLoginPage.html")
         } else {
             console.log(response)
@@ -234,7 +236,7 @@ $(function () {
 function logout() {
     let body = {"method": "logout"}
     $.post('mesageAppAPI.php', body, function () {
-        window.location.reload()
+        window.location = "/messageAppLoginPage.html"
     });
 }
 
