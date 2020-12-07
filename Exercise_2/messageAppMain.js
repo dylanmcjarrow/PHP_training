@@ -52,41 +52,39 @@ $(function () {
             let innerHTML = "";
             let flip = 0;
 
-        let body = {
-            "method": "getSessionUser"
-        }
-        $.post('mesageAppAPI.php', body, function (response) {
-                let currentUser = ""
-                currentUser = response
+            let body = {
+                "method": "getSessionUser"
+            }
+            $.post('mesageAppAPI.php', body, function (response) {
+                    let currentUser = ""
+                    currentUser = response
 
-            posts.forEach(function (row) {
-                // console.log(row)
-
-
+                    posts.forEach(function (row) {
+                        // console.log(row)
 
 
-                let username = row["username"]
-                let deleteDisplay = "none"
+                        let username = row["username"]
+                        let deleteDisplay = "none"
 
-                if (currentUser === username){
-                    deleteDisplay = "inline"
-                }
+                        if (currentUser === username) {
+                            deleteDisplay = "inline"
+                        }
 
-                let postText = row["postText"]
-                let fname = row["fisrtname"]
-                let sname = row["lastname"]
-                let postID = row["postOrder"]
-                let postTimeStmp = row["postTimeStmp"]
-                let userPIC = (fname.charAt(0) + sname.charAt(0)).toUpperCase()
-                let pageLayout = ""
-                if ($(window).height() >= $(window).width()) {
-                    pageLayout = "vw"
-                } else {
-                    pageLayout = "vh"
-                }
+                        let postText = row["postText"]
+                        let fname = row["fisrtname"]
+                        let sname = row["lastname"]
+                        let postID = row["postOrder"]
+                        let postTimeStmp = row["postTimeStmp"]
+                        let userPIC = (fname.charAt(0) + sname.charAt(0)).toUpperCase()
+                        let pageLayout = ""
+                        if ($(window).height() >= $(window).width()) {
+                            pageLayout = "vw"
+                        } else {
+                            pageLayout = "vh"
+                        }
 
 
-                let tempHTML_F = `
+                        let tempHTML_F = `
                 
                 <tr>
                     <td  valign="top" style="border-bottom:0px  #FFF">
@@ -129,8 +127,8 @@ $(function () {
                     
                 </tr>
                 `
-                let heptNum = Math.floor(Math.random() * 36) + ".jpg"
-                let tempHTML_R = `
+                        let heptNum = Math.floor(Math.random() * 36) + ".jpg"
+                        let tempHTML_R = `
                 
                 <tr>
                 <td rowspan="3">
@@ -172,15 +170,15 @@ $(function () {
                 `
 
 
-                innerHTML = innerHTML + tempHTML_R
-            });
+                        innerHTML = innerHTML + tempHTML_R
+                    });
 
-            let outputHTML = startHTML_R + innerHTML + "";
+                    let outputHTML = startHTML_R + innerHTML + "";
 
-            $("#postsTableMainPage").html(outputHTML)
+                    $("#postsTableMainPage").html(outputHTML)
 
-            }
-        );
+                }
+            );
 
         }
     );
@@ -206,9 +204,22 @@ $(function () {
         $("#postTextInput").css("height", Math.min($("#postTextInput").prop('scrollHeight'), 200) + "px");
 
         let postText = $("#postTextInput").val()
-        if(postText.length>280){
 
-            $("#postTextInput").val(postText.slice(0,280))
+
+        if (postText.length > 0) {
+            if ((280 - postText.length) <= 0) {
+                $("#charactersLeft").html("0/280")
+            } else {
+                $("#charactersLeft").html(280 - postText.length+"/280")
+            }
+
+        } else {
+            $("#charactersLeft").html("")
+        }
+
+        if (postText.length > 280) {
+
+            $("#postTextInput").val(postText.slice(0, 280))
 
         }
 
@@ -217,19 +228,20 @@ $(function () {
 
         let inputText = $("#postTextInput").val()
 
-        let charsToRemove = ["<", ">", "#", "$", "@", "%", "^", "{", "}", "\"", "`", ":", "=","'","–","[","]","'"]
+        let charsToRemove = ["<", ">", "#", "$", "@", "%", "^", "{", "}", "\"", "`", ":", "=", "'", "–", "[", "]", "'"]
         charsToRemove.forEach(function (character) {
             inputText = inputText.replaceAll(character, "")
         })
 
-        inputText = inputText.replaceAll("\n", "<br>")
 
+        if (inputText.length > 280) {
 
-        if(inputText.length>280){
-
-            inputText = inputText.slice(0,280)
+            inputText = inputText.slice(0, 280)
 
         }
+
+        inputText = inputText.replaceAll("\n", "<br>")
+
 
         let body = {
             "method": "makePost",
@@ -282,12 +294,14 @@ function logout() {
 }
 
 function deletePost(postID) {
-    let body = {"method": "deletePost",
-                "postID":postID}
+    let body = {
+        "method": "deletePost",
+        "postID": postID
+    }
     $.post('mesageAppAPI.php', body, function (response) {
-        if(response== 0){
+        if (response == 0) {
             window.location.reload()
-        }else{
+        } else {
             console.log(response)
         }
     });
