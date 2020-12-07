@@ -268,7 +268,7 @@ function updateProfile(URL){
 
 function validateInputByID(inputID) {
     console.log("validoit")
-    let format = /[()_+\-=\[\]{};':"\\|<>\/]/;
+    let format = /[()=\[\]{};':"\\|<>\/]/;
 
     if ($("#" + inputID).val().length == 0) {
         $("#" + inputID).val("")

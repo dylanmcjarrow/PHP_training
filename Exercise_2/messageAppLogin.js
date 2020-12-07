@@ -114,6 +114,7 @@ $(function () {
                 $("#loginBtn").html("Logout")
                 $("#LoginUsername").prop("disabled", true);
                 $("#LoginPassword").prop("disabled", true);
+                $("#registerBtn").prop("disabled", true);
             }
         }
     );
