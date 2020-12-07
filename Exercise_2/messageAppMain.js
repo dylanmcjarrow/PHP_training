@@ -66,7 +66,6 @@ $(function () {
                 let username = row["username"]
                 let deleteDisplay = "none"
 
-                console.log()
                 if (currentUser === username){
                     deleteDisplay = "inline"
                 }

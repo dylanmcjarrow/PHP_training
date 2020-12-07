@@ -21,7 +21,7 @@ $(function () {
 
     $("#signupBtn").click(function () {
 
-        let form_inputs = ["firstname", "surname", "email", "username"]
+        let form_inputs = ["firstname", "surname", "username"]
         let failed_inputs = 0
         form_inputs.forEach(function (inputID) {
 
@@ -29,7 +29,7 @@ $(function () {
 
         })
 
-        let psword_inputs = ["password", "password_confirm"]
+        let psword_inputs = ["password", "password_confirm",, "email"]
 
 
         psword_inputs.forEach(function (inputID) {
@@ -48,7 +48,7 @@ $(function () {
                 $("#" + inputID).addClass(' border-danger')
                 failed_inputs = failed_inputs + 1
 
-            } else if ($("#" + inputID).val().length > 20) {
+            } else if ($("#" + inputID).val().length > 40) {
                 $("#" + inputID).val("")
                 $("#output").empty();
                 let startHTML = `<div class="d-flex justify-content-center" >
@@ -160,7 +160,7 @@ function validateInputByID(inputID) {
         $("#output").append(outputHTML);
         $("#" + inputID).addClass(' border-danger')
         return 1
-    } else if ($("#" + inputID).val().length > 40) {
+    } else if ($("#" + inputID).val().length > 30) {
         $("#" + inputID).val("")
         $("#output").empty();
         let startHTML = `<div class="d-flex justify-content-center" >

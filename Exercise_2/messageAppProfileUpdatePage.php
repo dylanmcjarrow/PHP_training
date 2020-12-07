@@ -59,18 +59,18 @@
         <a id="homeBtn" class="navBtn" onclick="" style="cursor: pointer; font-size: 2em;padding: 1em">Home</a>
 
 
-
-
         <div class="d-flex">
             <a id="profileBtn" class="navBtn " onclick=""
                style="cursor: pointer; font-size: 2em;padding: 1em">Profile</a>
             <div class="col" id="shizwanidropdown" style="display: none;">
 
                 <div class="row">
-                    <a  href="messageAppProfilePage.php?user=personalprofileload" style="font-family: 'Montserrat', sans-serif">Go to profile</a>
+                    <a href="messageAppProfilePage.php?user=personalprofileload"
+                       style="font-family: 'Montserrat', sans-serif">Go to profile</a>
                 </div>
                 <div class="row logoutBtnMainPage">
-                    <a class="logoutBtnMainPage" href="" onclick="logout()" style="font-family: 'Montserrat', sans-serif">Logout</a>
+                    <a class="logoutBtnMainPage" href="" onclick="logout()"
+                       style="font-family: 'Montserrat', sans-serif">Logout</a>
 
                 </div>
 
@@ -82,8 +82,6 @@
     </div>
 
 </div>
-
-
 
 
 <div class="container-fluid " style="padding: 15px">
@@ -104,16 +102,13 @@
 
                         <?php
                         session_start();
-                        $requestuser = $_GET["user"];
-                        if ($requestuser == "personalprofileload") {
-                            $requestuser = $_SESSION["username"];
-                        }
+
+                        $requestuser = $_SESSION["username"];
+
                         ?>
 
                         <div class="usernameProfilepage" id="<?php echo $requestuser; ?>"
                              style="padding: 0;text-align: left">
-
-
 
 
                             <?php
@@ -121,17 +116,18 @@
                             ?>
 
 
+
                         </div>
                     </li>
 
                     <li class="profileTitle">
 
-                        <div id="firstnameProfilePage" style="padding: 0;text-align: left"></div>
+                        <div id="firstnameProfilePage" style="padding: 0;text-align: left"><input id="firstnameInput" type="text" value="<?php echo $_GET['firstname'];  ?>"></div>
 
                     </li>
                     <li class="profileTitle">
 
-                        <div id="lastnameProfilePage" style="padding: 0;text-align: left"></div>
+                        <div id="lastnameProfilePage" style="padding: 0;text-align: left"><input id="lastnameInput" type="text" value="<?php echo $_GET['lastname'];  ?>"></div>
 
                     </li>
 
@@ -139,9 +135,9 @@
                     <li class="profileTitle">
 
 
-                        <div id="emailProfilePage" style="padding: 0;text-align: left"></div>
+                        <div id="emailProfilePage" style="padding: 0;text-align: left"><input id="emailInput" type="text" value="<?php echo $_GET['email'];  ?>"></div>
                         <div style="float: right">
-                            <a id="pageEditBtn" href="messageAppProfileUpdatePage.php?username=" style="color: black;display: none">&#9874;</a>
+                            <a id="pageEditBtn" onclick="updateProfile('messageAppProfilePage.php?user=personalprofileload')" style="cursor: pointer;color: black;">&#9745;</a>
 
                         </div>
                     </li>
@@ -179,5 +175,5 @@
 </div>
 
 </body>
-<script type="text/javascript" src="messageAppProfile.js"></script>
+<script type="text/javascript" src="messageAppProfileUpdate.js"></script>
 </html>

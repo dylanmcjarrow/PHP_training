@@ -51,6 +51,7 @@ class PersonsCRUD
 
 
     }
+
     public function getUserId($tablename, $Username)
     {
 
@@ -64,6 +65,18 @@ class PersonsCRUD
         echo $this->conn->error;
         return $outArr;
 
+    }
+
+    public function profileDetails($tablename, $Username){
+        $sql = "SELECT  userID,fisrtname ,lastname,emial,username FROM ".$tablename." WHERE username ='".$Username."' LIMIT 1;";
+        $result = $this->conn->query($sql);
+        $outArr = [];
+        echo $this->conn->error;
+        while ($row = $result->fetch_assoc()) {
+            array_push($outArr, $row);
+        }
+
+        return $outArr;
     }
 
     public function checkLogin($tablename, $username, $password)
@@ -89,11 +102,28 @@ class PersonsCRUD
         echo 1;
 
     }
+
+    public function updateUser($tablename,$username ,$firstname,$lastname, $email){
+
+
+        $sql = "UPDATE " . $tablename . "
+         SET fisrtname ='" . $firstname . "' ,
+         lastname ='" . $lastname . "' ,
+         emial ='" . $email . "' 
+         WHERE username = '" . $username . "';";
+
+        if ($this->conn->query($sql) === TRUE) {
+            echo 0;
+        } else {
+            echo "Error updating into database: " . $this->conn->error . "\n";
+        }
+    }
+
 }
 
-
+//
 //$pobj = new PersonsCRUD("messageApp");
-//$uid  = $pobj->getUserId("Persons","dylanmcjarrow");
-//echo $uid;
+//$uid  = $pobj->profileDetails("Persons","dylanmcjarrow");
+//echo json_encode($uid);
 
 ?>

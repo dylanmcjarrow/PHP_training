@@ -8,7 +8,6 @@ $.post('mesageAppAPI.php', body, function (response) {
             console.log(response)
 
 
-
         }
     }
 );
@@ -19,42 +18,7 @@ $(function () {
 
 
 
-    body = {
-        "method": "profileDetails",
-        "username": $(".usernameProfilepage").attr("id")
-    }
-    $.post('mesageAppAPI.php', body, function (response) {
 
-        let person = JSON.parse(response)[0];
-        $("#firstnameProfilePage").html(person["fisrtname"])
-        $("#lastnameProfilePage").html(person["lastname"])
-        $("#emailProfilePage").html(person["emial"])
-
-        $("#pageEditBtn").attr("href",`messageAppProfileUpdatePage.php?firstname=${person["fisrtname"]}&lastname=${person["lastname"]}&email=${person["emial"]}`)
-
-        let body = {
-            "method": "getSessionUser"
-        }
-        $.post('mesageAppAPI.php', body, function (response) {
-                if (response.length == 0) {
-                    window.location.replace("/messageAppLoginPage.html")
-                } else {
-
-
-                    if (person["username"] ===  response) {
-                        $("#pageEditBtn").css("display","inline")
-
-                    }
-
-
-                }
-            }
-        );
-
-
-
-
-    });
 
     body = {
         "method": "getPostsByUser",
@@ -91,7 +55,6 @@ $(function () {
                         console.log()
                         if (currentUser === username) {
                             deleteDisplay = "inline"
-
                         }
 
                         let postText = row["postText"]
@@ -224,11 +187,6 @@ $(function () {
         $("#shizwanidropdown").show(100)
 
     })
-
-
-
-
-
 })
 
 function logout() {
@@ -255,4 +213,22 @@ function deletePost(postID) {
             console.log(response)
         }
     });
+}
+
+function updateProfile(URL){
+
+    let body = {"method": "updateProfile",
+                "username": $(".usernameProfilepage").attr("id"),
+                "fisrtname":$("#firstnameInput").val(),
+                "lastname":$("#lastnameInput").val(),
+                "email":$("#emailInput").val()
+    }
+    $.post('mesageAppAPI.php', body, function (response) {
+        if(response== 0){
+            window.location = URL
+        }else{
+            console.log(response)
+        }
+    });
+
 }

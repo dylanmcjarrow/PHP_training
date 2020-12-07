@@ -113,7 +113,7 @@ switch ($_POST['method']) {
         break;
 
     case "getPostsByUser":
-        $result = $pstObj->getPosts("Posts","username");
+        $result = $pstObj->getPostsByUser("Posts",$_POST["numberOfPosts"],$_POST["username"]);
         foreach ($result as $row) {
 
             $myArray[] = $row;
@@ -124,6 +124,31 @@ switch ($_POST['method']) {
 
         break;
 
+    case "profileDetails":
+
+
+
+         $result = $pObj->profileDetails("Persons",$_POST["username"]);
+        foreach ($result as $row) {
+
+            $myArray[] = $row;
+        }
+
+        echo json_encode($myArray);
+
+        break;
+
+    case "updateProfile":
+
+        $result = $pObj->updateUser("Persons",$_POST["username"],$_POST["fisrtname"],$_POST["lastname"],$_POST["email"]);
+        if ($result == 0) {
+            echo $result;
+        } else {
+            echo "Update Failed";
+        }
+
+
+        break;
 }
 
 

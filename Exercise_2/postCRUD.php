@@ -67,6 +67,27 @@ class postCrud
         }
 
     }
+
+
+    public function getPostsByUser($tablename,$numberOfPosts,$Username)
+    {
+
+        $sql = "SELECT Posts.postText, Posts.postTimeStmp, Posts.postOrder, Persons.username, Persons.fisrtname, Persons.lastname 
+                FROM " . $tablename . " 
+                INNER JOIN Persons ON Posts.userID = Persons.userID 
+                WHERE Persons.username = '".$Username."'
+                ORDER BY Posts.postOrder DESC
+                LIMIT ".$numberOfPosts."
+                 ;";
+        $result = $this->conn->query($sql);
+        $outArr = [];
+        echo $this->conn->error;
+        while ($row = $result->fetch_assoc()) {
+            array_push($outArr, $row);
+        }
+        return $outArr;
+
+    }
 }
 
 //$pObj = new postCrud("messageApp");

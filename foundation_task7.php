@@ -2,7 +2,7 @@
 
 
 include "foundation_task6_class.php";
-$pCRUD = new PersonsCRUD("foundation_task6");
+$pCRUD = new PersonCRUD("foundation_task6");
 switch ($_POST['method']) {
 
     case "loadPerson":
